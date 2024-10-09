@@ -1,4 +1,27 @@
-// פונקציה שמציגה את האלמנטים בהדרגה כאשר גוללים למטה
+// פונקציית אנימציה לכותרת הראשית
+document.addEventListener('DOMContentLoaded', function() {
+    const headerTitle = document.querySelector('header h1');
+    
+    // אפקט הופעת הכותרת
+    headerTitle.style.opacity = 0;
+    headerTitle.style.transform = 'translateY(-50px)';
+    
+    // הוספת אנימציה לאחר טעינת הדף
+    setTimeout(() => {
+        headerTitle.style.transition = 'all 1s ease-out';
+        headerTitle.style.opacity = 1;
+        headerTitle.style.transform = 'translateY(0)';
+        headerTitle.style.color = '#00A4EF'; // שינוי צבע לכחול בהיר
+    }, 500); // דיליי קל להופעה
+
+    // אנימציית שינוי צבע מחזורית
+    setInterval(() => {
+        headerTitle.style.transition = 'color 1s ease-in-out';
+        headerTitle.style.color = headerTitle.style.color === '#00A4EF' ? '#F0F6FC' : '#00A4EF';
+    }, 2000); // שינוי כל 2 שניות
+});
+
+// פונקציה שמציגה את האלמנטים בהדרגה כאשר גוללים למטה עם אנימציה חלקה
 function revealOnScroll() {
     const reveals = document.querySelectorAll('.reveal'); // בחירת האלמנטים עם המחלקה 'reveal'
 
@@ -15,33 +38,18 @@ function revealOnScroll() {
     }
 }
 
-// הוספת מאזין לאירוע הגלילה כדי להפעיל את הפונקציה בעת גלילה
+// הוספת מאזין לאירוע גלילה להפעלת הפונקציה
 window.addEventListener('scroll', revealOnScroll);
 
-// אנימציה לכפתור השליחה כאשר לוחצים עליו
+// אפקט hover לכפתור השליחה
 const submitButton = document.querySelector('input[type="submit"]');
-submitButton.addEventListener('click', function() {
-    submitButton.classList.add('clicked'); // הוספת המחלקה 'clicked' לאפקט
-    setTimeout(() => {
-        submitButton.classList.remove('clicked'); // הסרת האפקט לאחר 300 מילישניות
-    }, 300);
+submitButton.addEventListener('mouseover', function() {
+    submitButton.style.transform = 'scale(1.05)';
+    submitButton.style.transition = 'transform 0.3s ease';
+});
+submitButton.addEventListener('mouseout', function() {
+    submitButton.style.transform = 'scale(1)';
 });
 
-// אפקט מעבר עכבר לשינוי צבע הרקע של הגוף
-const body = document.body;
-const sections = document.querySelectorAll('section'); // בחירת כל הסקשנים
-
-sections.forEach(section => {
-    section.addEventListener('mouseover', () => {
-        body.style.background = 'linear-gradient(135deg, #FFB900, #7FBA00)'; // שינוי רקע בזמן מעבר עכבר
-    });
-    section.addEventListener('mouseout', () => {
-        body.style.background = 'linear-gradient(135deg, #00A4EF, #FFB900)'; // החזרת הרקע המקורי
-    });
-});
-
-// הפעלת הפונקציה לגילוי האובייקטים בתחילת הדף
+// הפעלת האפקטים כאשר הדף נטען
 revealOnScroll();
-
-// ווידוי שכל האלמנטים בטווח יתחילו במצב הנכון כשדף נטען מחדש
-window.addEventListener('load', revealOnScroll);
