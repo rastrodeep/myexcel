@@ -87,6 +87,11 @@ ul li img:hover {
     box-shadow: 0 8px 20px rgba(35, 134, 54, 0.5);
 }
 
+/* מרכוז טקסט בתחתית */
+footer p {
+    text-align: center;
+}
+
 /* עיצוב כפתורי שליחה */
 button {
     background-color: #25D366; /* צבע רקע ירוק של WhatsApp */
